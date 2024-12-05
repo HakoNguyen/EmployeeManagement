@@ -41,11 +41,4 @@ public class PositionService {
         positionRepository.deleteByPositionCode(positionCode);
     }
 
-    public void deletePositionById(String id) {
-        if (!positionRepository.existsById(id)) {
-            throw new RuntimeException("Position not found");
-        }
-        positionRepository.deleteById(id);
-    }
-
 }

@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 @NonNullApi // Khai bao rang moi gia tri duoc tham chieu se khong null
-public interface DepartmentRepository extends JpaRepository<Department, Long> {
-    Optional<Department> findById(Long id); // Tìm theo id
+public interface DepartmentRepository extends JpaRepository<Department, String> {
+    Optional<Department> findById(String id); // Tìm theo id
     // tim phong ban qua code
     Department findByDepartmentCode(String departmentCode);
 

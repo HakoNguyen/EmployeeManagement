@@ -14,8 +14,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Department {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id; // id trong database
+
+    String id; // id trong database
     String departmentName;
     @Size(max = 3, message = "DptCode chỉ được tối đa 3 ký tự")
     String departmentCode; // ma phong ban

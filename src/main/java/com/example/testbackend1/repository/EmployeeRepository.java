@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 @NonNullApi
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+public interface EmployeeRepository extends JpaRepository<Employee, String> {
     // Tìm nhân viên thông qua ID nhân viên, trả về Optional
     Optional<Employee> findByEmployeeId(String employeeId);
 

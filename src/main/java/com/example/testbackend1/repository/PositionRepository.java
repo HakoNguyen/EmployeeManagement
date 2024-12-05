@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 @NonNullApi
-public interface PositionRepository extends JpaRepository<Position, Long> {
-    Optional<Position> findById(Long id);
+public interface PositionRepository extends JpaRepository<Position, String> {
+    Optional<Position> findById(String id);
 
     // tim chuc vu theo ma
     Position findByPositionCode(String positionCode);

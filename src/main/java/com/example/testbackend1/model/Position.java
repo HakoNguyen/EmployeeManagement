@@ -12,8 +12,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Position {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+
+    String id;
     String positionName;
     @Size(max = 1, message = "PstCode chỉ được tối đa 1 ký tự")
     String positionCode;
@@ -21,6 +21,8 @@ public class Position {
     @ManyToOne
     @JoinColumn(name = "department_id")
     Department department;
+
+    double basicSalary;
 
     public @Size(max = 1, message = "PstCode chỉ được tối đa 1 ký tự") String getPositionCode() {
         return positionCode;

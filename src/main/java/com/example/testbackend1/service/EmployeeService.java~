@@ -31,7 +31,12 @@ public class EmployeeService {
 
     @Autowired
     private AttendanceService attendanceService;
-    
+
+    @Autowired
+    private PositionRepository positionRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     // Thêm nhân viên mới
     public Employee addEmployee(Employee employee) {
