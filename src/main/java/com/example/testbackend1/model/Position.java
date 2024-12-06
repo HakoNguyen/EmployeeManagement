@@ -14,23 +14,14 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Position {
     @Id
-<<<<<<< HEAD
-=======
-
-    String id;
-    String positionName;
->>>>>>> origin/main
     @Size(max = 1, message = "PstCode chỉ được tối đa 1 ký tự")
     String positionCode; // mã chức vụ
     String positionName;
     double basicSalary; // lương cơ bản
 
 
-
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, orphanRemoval = true)
     List<DepartmentPosition> departmentPositions; // Danh sách các phòng ban liên quan
-
-    double basicSalary;
 
     public @Size(max = 1, message = "PstCode chỉ được tối đa 1 ký tự") String getPositionCode() {
         return positionCode;

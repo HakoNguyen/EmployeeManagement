@@ -13,12 +13,6 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Department {
     @Id
-<<<<<<< HEAD
-=======
-
-    String id; // id trong database
-    String departmentName;
->>>>>>> origin/main
     @Size(max = 3, message = "DptCode chỉ được tối đa 3 ký tự")
     String departmentCode; // mã phòng ban
     String departmentName;

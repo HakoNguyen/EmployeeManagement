@@ -10,7 +10,4 @@ public class SalaryDTO {
      String employeeId;
      double overtimeSalary;
      double totalSalary;
-
-     public void setBasicSalary(double basicSalary) {
-     }
 }

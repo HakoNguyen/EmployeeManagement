@@ -35,11 +35,11 @@ public class PositionController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePosition(@PathVariable String id) {
         try {
-            positionService.deletePositionById(id);
+            positionService.deletePositionByCode(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    }
+
 }

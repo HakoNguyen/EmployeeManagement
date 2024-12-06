@@ -7,13 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-<<<<<<< HEAD
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-=======
-@NonNullApi
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
-    // Tìm nhân viên thông qua ID nhân viên, trả về Optional
->>>>>>> origin/main
     Optional<Employee> findByEmployeeId(String employeeId);
     boolean existsByEmployeeId(String employeeId);
     void deleteByEmployeeId(String employeeId);

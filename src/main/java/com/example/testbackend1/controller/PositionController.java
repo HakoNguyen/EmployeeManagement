@@ -33,9 +33,9 @@ public class PositionController {
     @Transactional
 // Xóa chức vụ theo id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePosition(@PathVariable String id) {
+    public ResponseEntity<Void> deletePosition(@PathVariable String positionCode) {
         try {
-            positionService.deletePositionById(id);
+            positionService.deletePosition(positionCode);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

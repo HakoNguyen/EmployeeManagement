@@ -19,16 +19,9 @@ public class PositionService {
 
     // Tạo chức vụ
     public Position addPosition(Position position) {
-<<<<<<< HEAD
         // Kiểm tra xem position có hợp lệ không
         if (position.getPositionCode() == null || position.getPositionName() == null) {
             throw new RuntimeException("Position code and name cannot be null");
-=======
-        String departmentId = position.getDepartment() != null ? position.getDepartment().getId() : null;
-
-        if (departmentId == null ) {
-            throw new RuntimeException("Department cannot be null");
->>>>>>> origin/main
         }
 
         // Nếu bạn không muốn yêu cầu departmentPositions, hãy bỏ qua kiểm tra này
@@ -51,16 +44,4 @@ public class PositionService {
         }
         positionRepository.deleteByPositionCode(positionCode);
     }
-<<<<<<< HEAD
 }
-=======
-
-    public void deletePositionById(String id) {
-        if (!positionRepository.existsById(id)) {
-            throw new RuntimeException("Position not found");
-        }
-        positionRepository.deleteById(id);
-    }
-
-}
->>>>>>> origin/main

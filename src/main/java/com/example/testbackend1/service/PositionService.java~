@@ -17,43 +17,34 @@ public class PositionService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-<<<<<<< HEAD
     // Tạo chức vụ
     public Position addPosition(Position position) {
-        // Kiểm tra và thiết lập mối quan hệ với Department nếu cần
+<<<<<<< HEAD
+        // Kiểm tra xem position có hợp lệ không
+        if (position.getPositionCode() == null || position.getPositionName() == null) {
+            throw new RuntimeException("Position code and name cannot be null");
+=======
+        String departmentId = position.getDepartment() != null ? position.getDepartment().getId() : null;
+
+        if (departmentId == null ) {
+            throw new RuntimeException("Department cannot be null");
+>>>>>>> origin/main
+        }
+
+        // Nếu bạn không muốn yêu cầu departmentPositions, hãy bỏ qua kiểm tra này
         if (position.getDepartmentPositions() != null && position.getDepartmentPositions().isEmpty()) {
-            throw new RuntimeException("DepartmentPosition cannot be null or empty");
+            // Bỏ qua kiểm tra này nếu bạn muốn cho phép thêm Position mà không cần DepartmentPosition
         }
 
         // Lưu vị trí
         return positionRepository.save(position);
     }
-
     // Lấy tất cả chức vụ
     public List<Position> getAllPositions() {
         return positionRepository.findAll();
     }
 
     // Xóa chức vụ
-=======
-
-    // tao chuc vu
-    public Position addPosition(Position position) {
-        String departmentId = position.getDepartment() != null ? position.getDepartment().getId() : null;
-
-        if (departmentId == null ) {
-            throw new RuntimeException("Department cannot be null");
-        }
-        return positionRepository.save(position);
-    }
-
-
-    // Lay tat ca chuc vu
-    public List<Position> getAllPositions() {
-        return positionRepository.findAll();
-    }
-    // xoa chuc vu
->>>>>>> origin/main
     public void deletePosition(String positionCode) {
         if (!positionRepository.existsByPositionCode(positionCode)) {
             throw new RuntimeException("Position not found");
@@ -63,6 +54,13 @@ public class PositionService {
 <<<<<<< HEAD
 }
 =======
+
+    public void deletePositionById(String id) {
+        if (!positionRepository.existsById(id)) {
+            throw new RuntimeException("Position not found");
+        }
+        positionRepository.deleteById(id);
+    }
 
 }
 >>>>>>> origin/main
