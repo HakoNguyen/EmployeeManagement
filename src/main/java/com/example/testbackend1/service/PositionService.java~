@@ -19,19 +19,15 @@ public class PositionService {
 
     // Tạo chức vụ
     public Position addPosition(Position position) {
-        // Kiểm tra xem position có hợp lệ không
-        if (position.getPositionCode() == null || position.getPositionName() == null) {
-            throw new RuntimeException("Position code and name cannot be null");
-        }
-
-        // Nếu bạn không muốn yêu cầu departmentPositions, hãy bỏ qua kiểm tra này
+        // Kiểm tra và thiết lập mối quan hệ với Department nếu cần
         if (position.getDepartmentPositions() != null && position.getDepartmentPositions().isEmpty()) {
-            // Bỏ qua kiểm tra này nếu bạn muốn cho phép thêm Position mà không cần DepartmentPosition
+            throw new RuntimeException("DepartmentPosition cannot be null or empty");
         }
 
         // Lưu vị trí
         return positionRepository.save(position);
     }
+
     // Lấy tất cả chức vụ
     public List<Position> getAllPositions() {
         return positionRepository.findAll();

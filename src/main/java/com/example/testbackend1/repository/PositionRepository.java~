@@ -1,6 +1,6 @@
 package com.example.testbackend1.repository;
 
-import com.example.testbackend1.model.Position;
+import com.example.test backend1.model.Position;
 import com.example.testbackend1.model.Position;
 import org.springframework.data.jpa.repository.JpaRepository;
 

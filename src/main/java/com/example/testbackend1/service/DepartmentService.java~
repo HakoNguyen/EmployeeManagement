@@ -22,8 +22,7 @@ public class DepartmentService {
     }
     // lay phong ban theo code
     public Department getDepartmentByCode(String departmentCode) {
-        return departmentRepository.findByDepartmentCode(departmentCode)
-                .orElseThrow(() -> new RuntimeException("Department not found with code: " + departmentCode));
+        return  departmentRepository.findByDepartmentCode(departmentCode);
     }
     // xoa phong ban theo code
     public void deleteDepartment(String departmentCode) {

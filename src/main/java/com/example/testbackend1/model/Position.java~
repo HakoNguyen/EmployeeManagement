@@ -21,7 +21,7 @@ public class Position {
 
 
 
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "position")
     List<DepartmentPosition> departmentPositions; // Danh sách các phòng ban liên quan
 
     public @Size(max = 1, message = "PstCode chỉ được tối đa 1 ký tự") String getPositionCode() {
