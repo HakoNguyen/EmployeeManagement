@@ -41,5 +41,5 @@ public class PositionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    }
 }

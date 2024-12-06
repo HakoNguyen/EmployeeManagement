@@ -17,6 +17,7 @@ public class PositionService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
+<<<<<<< HEAD
     // Tạo chức vụ
     public Position addPosition(Position position) {
         // Kiểm tra và thiết lập mối quan hệ với Department nếu cần
@@ -34,10 +35,34 @@ public class PositionService {
     }
 
     // Xóa chức vụ
+=======
+
+    // tao chuc vu
+    public Position addPosition(Position position) {
+        String departmentId = position.getDepartment() != null ? position.getDepartment().getId() : null;
+
+        if (departmentId == null ) {
+            throw new RuntimeException("Department cannot be null");
+        }
+        return positionRepository.save(position);
+    }
+
+
+    // Lay tat ca chuc vu
+    public List<Position> getAllPositions() {
+        return positionRepository.findAll();
+    }
+    // xoa chuc vu
+>>>>>>> origin/main
     public void deletePosition(String positionCode) {
         if (!positionRepository.existsByPositionCode(positionCode)) {
             throw new RuntimeException("Position not found");
         }
         positionRepository.deleteByPositionCode(positionCode);
     }
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> origin/main

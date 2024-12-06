@@ -31,11 +31,26 @@ public class EmployeeService {
 
     @Autowired
     private AttendanceService attendanceService;
+<<<<<<< HEAD
     // Thêm nhân viên mới
     public Employee addEmployee(Employee employee) {
         // Lấy departmentId và positionId từ đối tượng
         Long departmentId = employee.getDepartment() != null ? employee.getDepartment().getId() : null;
         Long positionId = employee.getPosition() != null ? employee.getPosition().getId() : null;
+=======
+
+    @Autowired
+    private PositionRepository positionRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    // Thêm nhân viên mới
+    public Employee addEmployee(Employee employee) {
+        // Lấy departmentId và positionId từ đối tượng
+        String departmentId = employee.getDepartment() != null ? employee.getDepartment().getId() : null;
+        String positionId = employee.getPosition() != null ? employee.getPosition().getId() : null;
+>>>>>>> origin/main
 
         if (departmentId == null || positionId == null) {
             throw new RuntimeException("Department or Position cannot be null");
@@ -51,6 +66,7 @@ public class EmployeeService {
         // Lấy departmentCode và positionCode
         String departmentCode = existingDepartment.getDepartmentCode();
         String positionCode = existingPosition.getPositionCode();
+<<<<<<< HEAD
 
         long count = employeeRepository.countByDepartmentAndPosition(existingDepartment, existingPosition);
         // Sử dụng departmentCode và positionCode để tạo employeeId
@@ -60,6 +76,24 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
+=======
+        double basicSalary = existingPosition.getBasicSalary();
+
+        // Tính toán employeeId dựa trên departmentCode và positionCode
+        long count = employeeRepository.countByDepartmentAndPosition(existingDepartment, existingPosition);
+        String employeeId = departmentCode + positionCode + String.format("%04d", count + 1);
+
+        // Gán employeeId cho nhân viên
+        employee.setEmployeeId(employeeId);
+
+        // Gán department và position cho nhân viên
+        employee.setDepartment(existingDepartment);
+        employee.setPosition(existingPosition);
+
+        // Lưu nhân viên vào cơ sở dữ liệu
+        return employeeRepository.save(employee);
+}
+>>>>>>> origin/main
     // Lấy tất cả nhân viên
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
@@ -80,7 +114,10 @@ public class EmployeeService {
         existingEmployee.setName(updatedEmployee.getName());
         existingEmployee.setDepartment(updatedEmployee.getDepartment());
         existingEmployee.setPosition(updatedEmployee.getPosition());
+<<<<<<< HEAD
         existingEmployee.setBasicSalary(updatedEmployee.getBasicSalary());
+=======
+>>>>>>> origin/main
 
         // Lưu lại thay đổi
         return employeeRepository.save(existingEmployee);
@@ -138,7 +175,12 @@ public class EmployeeService {
 
     // Tính toán lương cho từng tháng
     public SalaryDTO getSalaryDTO(String employeeId, Employee employee, double totalHoursWorked) {
+<<<<<<< HEAD
         double basicSalary = employee.getBasicSalary();
+=======
+        Position position = employee.getPosition(); // Lấy Position từ Employee
+        double basicSalary = position.getBasicSalary(); // Lấy basicSalary từ Position
+>>>>>>> origin/main
         double hourlyRate = basicSalary / 40; // Lương theo giờ (40 giờ là tiêu chuẩn)
 
         double salary = basicSalary;
@@ -153,8 +195,12 @@ public class EmployeeService {
 
         // Trả về đối tượng SalaryDTO với thông tin lương của nhân viên
         SalaryDTO salaryDTO = new SalaryDTO();
+<<<<<<< HEAD
         salaryDTO.setEmployeeId(employeeId);
         salaryDTO.setBasicSalary(basicSalary);
+=======
+        salaryDTO.setEmployeeId(employeeId);// Thiết lập basicSalary
+>>>>>>> origin/main
         salaryDTO.setOvertimeSalary(overtimeSalary);
         salaryDTO.setTotalSalary(salary);
         return salaryDTO;

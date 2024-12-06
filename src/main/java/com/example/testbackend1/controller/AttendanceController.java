@@ -2,6 +2,7 @@ package com.example.testbackend1.controller;
 
 import com.example.testbackend1.model.Attendance;
 import com.example.testbackend1.service.AttendanceService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/attendances")
 public class AttendanceController {
@@ -20,6 +22,7 @@ public class AttendanceController {
     // Thêm mới bản ghi chấm công cho nhân viên
     @PostMapping("/add")
     public ResponseEntity<Attendance> addAttendance(@RequestBody Attendance attendance) {
+        log.info("AttendanceController: add Attendance");
         // Thêm bản ghi chấm công mới vào hệ thống
         Attendance createdAttendance = attendanceService.addAttendance(attendance);
         return new ResponseEntity<>(createdAttendance, HttpStatus.CREATED);
@@ -32,6 +35,8 @@ public class AttendanceController {
         return new ResponseEntity<>(attendances, HttpStatus.OK);
     }
 
+
+    // Tùy chọn
     @GetMapping("/total-hours/{employeeId}/{date}")
     public ResponseEntity<Double> getTotalHoursWorkedByDate(@PathVariable String employeeId, @PathVariable String date) {
         LocalDate parsedDate = LocalDate.parse(date); // Chuyển đổi chuỗi ngày thành LocalDate

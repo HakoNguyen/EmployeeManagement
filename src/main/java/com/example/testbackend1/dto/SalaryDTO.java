@@ -8,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SalaryDTO {
      String employeeId;
-     double basicSalary;
      double overtimeSalary;
      double totalSalary;
 }

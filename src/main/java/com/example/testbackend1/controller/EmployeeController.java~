@@ -28,7 +28,7 @@ public class EmployeeController {
     private AttendanceService attendanceService;
 
     // Tạo nhân viên
-    @PostMapping("/add")
+    @PostMapping("/add-employee")
     public Employee addEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
