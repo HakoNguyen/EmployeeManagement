@@ -44,7 +44,7 @@ public class AttendanceController {
         return new ResponseEntity<>(totalHours, HttpStatus.OK);
     }
 
-
+    // Lấy danh sách chấm công của nhân viên trong tháng
 // Lấy danh sách chấm công của nhân viên trong tháng
     @GetMapping("/employee/{employeeId}/{month}/{year}")
     public ResponseEntity<List<Attendance>> getAttendancesByEmployee(@PathVariable String employeeId, @PathVariable int month, @PathVariable int year) {
