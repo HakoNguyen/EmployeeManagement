@@ -24,10 +24,7 @@ public class PositionService {
             throw new RuntimeException("Position code and name cannot be null");
         }
 
-        // Nếu bạn không muốn yêu cầu departmentPositions, hãy bỏ qua kiểm tra này
-        if (position.getDepartmentPositions() != null && position.getDepartmentPositions().isEmpty()) {
-            // Bỏ qua kiểm tra này nếu bạn muốn cho phép thêm Position mà không cần DepartmentPosition
-        }
+
 
         // Lưu vị trí
         return positionRepository.save(position);

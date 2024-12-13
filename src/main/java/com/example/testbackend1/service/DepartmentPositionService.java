@@ -45,4 +45,10 @@ public class DepartmentPositionService {
     public List<DepartmentPosition> getAllDepartmentPositions() {
         return departmentPositionRepository.findAll();
     }
+    public void deleteDepartmentPosition(Long id) {
+        if (!departmentPositionRepository.existsById(id)) {
+            throw new RuntimeException("DepartmentPosition not found with ID: " + id);
+        }
+        departmentPositionRepository.deleteById(id);
+    }
 }

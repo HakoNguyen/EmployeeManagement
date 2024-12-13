@@ -19,10 +19,6 @@ public class Position {
     String positionName;
     double basicSalary; // lương cơ bản
 
-
-    @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<DepartmentPosition> departmentPositions; // Danh sách các phòng ban liên quan
-
     public @Size(max = 1, message = "PstCode chỉ được tối đa 1 ký tự") String getPositionCode() {
         return positionCode;
     }

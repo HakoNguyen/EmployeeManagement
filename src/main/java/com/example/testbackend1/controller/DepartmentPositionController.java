@@ -28,9 +28,19 @@ public class DepartmentPositionController {
     }
 
     // Lấy tất cả liên kết DepartmentPosition
-    @GetMapping
+    @GetMapping("get-all")
     public ResponseEntity<List<DepartmentPosition>> getAllDepartmentPositions() {
         List<DepartmentPosition> departmentPositions = departmentPositionService.getAllDepartmentPositions();
         return new ResponseEntity<>(departmentPositions, HttpStatus.OK);
+    }
+    // Xóa liên kết theo id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteDepartmentPosition(@PathVariable Long id) {
+        try {
+            departmentPositionService.deleteDepartmentPosition(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

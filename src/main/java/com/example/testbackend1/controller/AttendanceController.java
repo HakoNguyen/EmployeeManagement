@@ -23,19 +23,20 @@ public class AttendanceController {
     @PostMapping("/add")
     public ResponseEntity<Attendance> addAttendance(@RequestBody Attendance attendance) {
         log.info("AttendanceController: add Attendance");
-        // Thêm bản ghi chấm công mới vào hệ thống
         Attendance createdAttendance = attendanceService.addAttendance(attendance);
         return new ResponseEntity<>(createdAttendance, HttpStatus.CREATED);
     }
 
-    // Lay tat ca danh sach cham cong
-    @GetMapping
-    public ResponseEntity<List<Attendance>> getAllAttendances() {
-        List<Attendance> attendances = attendanceService.getAllAttendances();
-        return new ResponseEntity<>(attendances, HttpStatus.OK);
+    // Lấy tất cả danh sách chấm công
+    @GetMapping("/get-all")
+    public List<Attendance> getAllAttendances() {
+        return attendanceService.getAllAttendances();
     }
 
-
+    @PutMapping("/{id}")
+    public Attendance updateAttendance(@PathVariable Long id, @RequestBody Attendance updateAttendance) {
+        return attendanceService.updateAttendance(id, updateAttendance);
+    }
     // Tùy chọn
     @GetMapping("/total-hours/{employeeId}/{date}")
     public ResponseEntity<Double> getTotalHoursWorkedByDate(@PathVariable String employeeId, @PathVariable String date) {
@@ -44,7 +45,6 @@ public class AttendanceController {
         return new ResponseEntity<>(totalHours, HttpStatus.OK);
     }
 
-    // Lấy danh sách chấm công của nhân viên trong tháng
 // Lấy danh sách chấm công của nhân viên trong tháng
     @GetMapping("/employee/{employeeId}/{month}/{year}")
     public ResponseEntity<List<Attendance>> getAttendancesByEmployee(@PathVariable String employeeId, @PathVariable int month, @PathVariable int year) {
@@ -52,6 +52,16 @@ public class AttendanceController {
         List<Attendance> attendances = attendanceService.getAttendancesByEmployeeAndMonthYear(employeeId, month, year);
         return new ResponseEntity<>(attendances, HttpStatus.OK);
     }
+    @GetMapping("/{day}/{month}/{year}")
+    public ResponseEntity<List<Attendance>> getAttendancesByDate(
+            @PathVariable int day,
+            @PathVariable int month,
+            @PathVariable int year) {
+        List<Attendance> attendances = attendanceService.getAttendancesByDate(day, month, year);
+        return new ResponseEntity<>(attendances, HttpStatus.OK);
+    }
+
+
 
     // Lấy tổng số giờ làm việc của nhân viên trong tháng
         @GetMapping("/total-hours/{employeeId}/{month}/{year}")

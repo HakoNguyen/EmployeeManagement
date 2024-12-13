@@ -21,14 +21,25 @@ public class AttendanceService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    // Lấy tất cả bản ghi chấm công
+    // Cập nhật thông tin chấm công
+    public Attendance updateAttendance(Long id, Attendance updateAttendance) {
+        Attendance existingAttendance = attendanceRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee not found with ID: " + id));
+
+        existingAttendance.setDate(updateAttendance.getDate());
+        existingAttendance.setCheckIn(updateAttendance.getCheckIn());
+        existingAttendance.setCheckOut(updateAttendance.getCheckOut());
+
+        return attendanceRepository.save(existingAttendance);
+    }
+
     public List<Attendance> getAllAttendances() {
         return attendanceRepository.findAll();
     }
-
     // Lấy bản ghi chấm công theo employeeId
-    public List<Attendance> getAttendancesByEmployee(String employeeId) {
-        return attendanceRepository.findByEmployeeEmployeeId(employeeId);
+    public Attendance findByEmployeeEmployeeId(String employeeId) {
+        return attendanceRepository.findByEmployeeEmployeeId(employeeId)
+                .orElseThrow(() -> new RuntimeException("Employee not found with ID: " + employeeId));
     }
 
     public double calculateTotalHoursWorkedByDate(String employeeId, LocalDate date) {
@@ -76,6 +87,16 @@ public class AttendanceService {
 
         return totalHours;
     }
+
+    public List<Attendance> getAttendancesByDate(int day, int month, int year) {
+        // Tạo LocalDate từ ngày, tháng, năm
+        LocalDate date = LocalDate.of(year, month, day);
+
+        // Truy vấn bản ghi theo ngày
+        return attendanceRepository.findByDate(date);
+    }
+
+
     public List<Attendance> getAttendancesByEmployeeAndMonthYear(String employeeId, int month, int year) {
         LocalDate startDate = LocalDate.of(year, month, 1); // Ngày đầu tháng
         LocalDate endDate = startDate.withDayOfMonth(startDate.lengthOfMonth()); // Ngày cuối tháng

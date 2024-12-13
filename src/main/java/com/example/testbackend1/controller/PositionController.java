@@ -25,14 +25,14 @@ public class PositionController {
     }
 
     // Lấy tất cả chức vụ
-    @GetMapping
+    @GetMapping("get-all")
     public ResponseEntity<List<Position>> getAllPositions() {
         List<Position> positions = positionService.getAllPositions();
         return new ResponseEntity<>(positions, HttpStatus.OK);
     }
     @Transactional
 // Xóa chức vụ theo id
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{positionCode}")
     public ResponseEntity<Void> deletePosition(@PathVariable String positionCode) {
         try {
             positionService.deletePosition(positionCode);

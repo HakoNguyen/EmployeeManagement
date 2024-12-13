@@ -34,7 +34,7 @@ public class EmployeeController {
     }
 
     // Lấy tất cả nhân viên
-    @GetMapping
+    @GetMapping("/get-all")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
@@ -51,28 +51,22 @@ public class EmployeeController {
 
     // Lấy danh sách chấm công
     @GetMapping("/{employeeId}/attendances")
-    public ResponseEntity<List<Map<String, Object>>>
-    // Tạo Map chứa các trường trả về
-    getAttendancesByEmployee(@PathVariable String employeeId) {
-        List<Attendance> attendances = attendanceService.getAttendancesByEmployee(employeeId);
+    public ResponseEntity<Map<String, Object>> getAttendancesByEmployee(@PathVariable String employeeId) {
+        Attendance attendance = attendanceService.findByEmployeeEmployeeId(employeeId);
 
-        if (attendances == null || attendances.isEmpty()) {
+        if (attendance == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        // Chuyển đổi attendances từ danh sách sang Map
-        List<Map<String, Object>> attendanceResponse = attendances.stream()
-                .map(attendance -> {
-                    Map<String, Object> responseMap = new HashMap<>();
-                    responseMap.put("date", attendance.getDate().toString());
-                    responseMap.put("checkIn", attendance.getCheckIn());
-                    responseMap.put("checkOut", attendance.getCheckOut());
-                    return responseMap;
-                })
-                .collect(Collectors.toList());
+        // Create response map
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("date", attendance.getDate().toString());
+        responseMap.put("checkIn", attendance.getCheckIn());
+        responseMap.put("checkOut", attendance.getCheckOut());
 
-        return new ResponseEntity<>(attendanceResponse, HttpStatus.OK);
+        return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
+
 
 
     // Cập nhật thông tin nhân viên

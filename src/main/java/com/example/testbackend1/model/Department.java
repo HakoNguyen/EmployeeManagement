@@ -19,9 +19,6 @@ public class Department {
     int foundingYear; // năm thành lập
     String status; // trạng thái
 
-    @OneToMany(mappedBy = "department")
-    List<DepartmentPosition> departmentPositions; // Danh sách các vị trí liên quan
-
     public @Size(max = 3, message = "DptCode chỉ được tối đa 3 ký tự") String getDepartmentCode() {
         return departmentCode;
     }
