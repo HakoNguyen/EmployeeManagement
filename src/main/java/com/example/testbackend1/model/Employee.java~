@@ -5,8 +5,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
-
 @Data
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -16,11 +14,7 @@ public class Employee {
     // Khóa chính
     String employeeId;
     String name;
-    String address; // địa chỉ
-    String email; // email
-    LocalDate dateOfBirth; // ngày sinh
-    LocalDate dateOfJoining; // ngày vào làm việc
-
+    
 
     @ManyToOne
     @JoinColumn(name = "department_id")
